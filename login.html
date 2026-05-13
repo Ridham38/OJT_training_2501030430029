@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Care+ Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-teal: #00897b;
+            --primary-hover: #00695c;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --google-black: #000000;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('background.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 110px;
+            height: auto;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        h1 {
+            color: var(--text-dark);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        /* Social Login */
+        .google-btn {
+            background-color: var(--google-black);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 25px;
+            gap: 10px;
+        }
+
+        .google-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .divider:not(:empty)::before { margin-right: .75em; }
+        .divider:not(:empty)::after { margin-left: .75em; }
+
+        /* Form Styling */
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            position: absolute;
+            top: -10px;
+            left: 12px;
+            background: white;
+            padding: 0 5px;
+            font-size: 13px;
+            color: var(--text-muted);
+            z-index: 1;
+        }
+
+        .form-group label span { color: #ef4444; }
+
+        input[type="email"], 
+        input[type="password"],
+        input[type="text"] {
+            width: 100%;
+            padding: 14px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus {
+            border-color: var(--primary-teal);
+            box-shadow: 0 0 0 2px rgba(0, 137, 123, 0.1);
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 15px;
+            top: 14px;
+            color: var(--primary-teal);
+            cursor: pointer;
+        }
+
+        /* Footer Links */
+        .flex-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+        }
+
+        .forgot-pass {
+            color: var(--primary-teal);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-submit {
+            background-color: var(--primary-teal);
+            color: white;
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .switch-form {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            text-align: right;
+        }
+
+        .switch-form a {
+            color: var(--primary-teal);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* App Promo Box */
+        .app-promo {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .app-promo h3 {
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            line-height: 1.4;
+            color: var(--text-dark);
+        }
+
+        .store-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .store-btn {
+            background: #212121;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            flex: 1;
+        }
+
+        .store-btn img { width: 24px; margin-right: 8px; }
+        .store-text { font-size: 10px; }
+        .store-name { display: block; font-size: 13px; font-weight: 600; }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+        <img src="Healthcare+.webp" alt="Health Care+ logo" class="logo">
+        <!-- LOGIN FORM -->
+        <div id="login-section">
+            <h1>Welcome to Health Care+</h1>
+            <p class="subtitle">Login to your Health Care+ Account</p>
+        <button class="google-btn">
+            <img src="google.png" class="google-icon" alt="Google">
+            Login with Google Email
+        </button>
+
+        <div class="divider">or continue with email</div>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label>Email <span>*</span></label>
+                <input id="login-email" type="email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Password <span>*</span></label>
+                <input id="login-password" type="password" required>
+                <span class="eye-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </span>
+            </div>
+
+            <div class="flex-row">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="remember">
+                    <label for="remember" style="position:static; padding:0; font-size:14px;">Remember me</label>
+                </div>
+                <a href="#" class="forgot-pass">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn-submit">Login</button>
+        </form>
+
+        <div class="switch-form">
+            Don't have an account? <a href="#" onclick="toggleForm()">Sign up</a>
+        </div>
+    </div>
+
+    <!-- REGISTRATION FORM (Hidden by default) -->
+    <div id="register-section" class="hidden">
+        <h1>Join Health Care+!</h1>
+        <p class="subtitle">Create your Health Care+ Account</p>
+
+        <button class="google-btn">
+            <img src="google.png" class="google-icon" alt="Google">
+            Sign up with Google Email
+        </button>
+
+        <div class="divider">or register with email</div>
+
+        <form id="register-form">
+            <div class="form-group">
+                <label>Full Name <span>*</span></label>
+                <input id="register-name" type="text" required>
+            </div>
+            <div class="form-group">
+                <label>Email <span>*</span></label>
+                <input id="register-email" type="email" required>
+            </div>
+            <div class="form-group">
+                <label>Password <span>*</span></label>
+                <input id="register-password" type="password" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Create Account</button>
+        </form>
+
+        <div class="switch-form">
+            Already have an account? <a href="#" onclick="toggleForm()">Login</a>
+        </div>
+    </div>
+
+    <!-- App Promo Section -->
+    <div class="app-promo">
+        <h3>Get the Health Care+ Doctor Mobile App for Free!</h3>
+        <div class="store-btns">
+            <a href="#" class="store-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store">
+                <div class="store-content">
+                    <span class="store-text">GET IT ON</span>
+                    <span class="store-name">Google Play</span>
+                </div>
+            </a>
+            <a href="#" class="store-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Apple_logo_white.svg" alt="App Store">
+                <div class="store-content">
+                    <span class="store-text">Download on the</span>
+                    <span class="store-name">App Store</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleForm() {
+        document.getElementById('login-section').classList.toggle('hidden');
+        document.getElementById('register-section').classList.toggle('hidden');
+    }
+
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var email = document.getElementById('login-email').value.trim();
+        var password = document.getElementById('login-password').value.trim();
+
+        var storedEmail = localStorage.getItem('hcplus-email');
+        var storedPassword = localStorage.getItem('hcplus-password');
+
+        if (!storedEmail || !storedPassword) {
+            alert('No account found. Please register first.');
+            toggleForm();
+            return;
+        }
+
+        if (email !== storedEmail || password !== storedPassword) {
+            alert('Email or password is incorrect. Please register or try again.');
+            return;
+        }
+
+        alert('Login successful!');
+        // Add redirect or actual login logic here if needed.
+    });
+
+    document.getElementById('register-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var name = document.getElementById('register-name').value.trim();
+        var email = document.getElementById('register-email').value.trim();
+        var password = document.getElementById('register-password').value.trim();
+
+        localStorage.setItem('hcplus-name', name);
+        localStorage.setItem('hcplus-email', email);
+        localStorage.setItem('hcplus-password', password);
+
+        alert('Registration successful! Please login to continue.');
+        toggleForm();
+    });
+</script>
+
+</body>
+</html>
