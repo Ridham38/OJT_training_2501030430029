@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health Care+ Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -15,66 +16,82 @@
             --google-black: #000000;
         }
 
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
             background-image: url('background.webp');
+            background-repeat: no-repeat;
+            background-position: center center;
             background-size: cover;
-            background-position: center;
             background-attachment: fixed;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
-            padding: 20px;
+            background-color: #f8fafc;
+            padding: 10px;
         }
 
+        /* Fixed compact square box dimension */
         .container {
             width: 100%;
-            max-width: 450px;
+            max-width: 360px; 
+            margin: 0 auto;
             text-align: center;
+            background: rgba(255,255,255,0.98);
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(15,23,42,0.12);
+            padding: 22px 20px;
+            backdrop-filter: blur(10px);
         }
 
         .logo {
-            width: 110px;
+            width: 75px;
             height: auto;
-            margin: 0 auto 20px;
+            margin: 0 auto 10px;
             display: block;
         }
 
         h1 {
             color: var(--text-dark);
-            font-size: 32px;
+            font-size: 20px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .subtitle {
             color: var(--text-muted);
-            font-size: 16px;
-            margin-bottom: 30px;
+            font-size: 13px;
+            margin-bottom: 15px;
         }
 
-        /* Social Login */
+        /* Google Login */
         .google-btn {
             background-color: var(--google-black);
             color: white;
             width: 100%;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 9px;
+            border-radius: 6px;
             border: none;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
             cursor: pointer;
-            margin-bottom: 25px;
-            gap: 10px;
+            margin-bottom: 15px;
+            gap: 8px;
+            font-size: 13px;
         }
 
         .google-icon {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
         }
 
         /* Divider */
@@ -83,8 +100,8 @@
             align-items: center;
             text-align: center;
             color: var(--text-muted);
-            margin-bottom: 25px;
-            font-size: 14px;
+            margin-bottom: 15px;
+            font-size: 12px;
         }
 
         .divider::before, .divider::after {
@@ -93,23 +110,23 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .divider:not(:empty)::before { margin-right: .75em; }
-        .divider:not(:empty)::after { margin-left: .75em; }
+        .divider:not(:empty)::before { margin-right: .5em; }
+        .divider:not(:empty)::after { margin-left: .5em; }
 
-        /* Form Styling */
+        /* Compact Boxed Form Inputs */
         .form-group {
             position: relative;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
             text-align: left;
         }
 
         .form-group label {
             position: absolute;
-            top: -10px;
-            left: 12px;
+            top: -9px;
+            left: 10px;
             background: white;
-            padding: 0 5px;
-            font-size: 13px;
+            padding: 0 4px;
+            font-size: 11px;
             color: var(--text-muted);
             z-index: 1;
         }
@@ -120,41 +137,48 @@
         input[type="password"],
         input[type="text"] {
             width: 100%;
-            padding: 14px 12px;
+            padding: 9px 10px; 
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 6px;
             box-sizing: border-box;
-            font-size: 16px;
+            font-size: 14px;
             outline: none;
             transition: border-color 0.2s, box-shadow 0.2s;
+            background-color: transparent;
         }
 
         input:focus {
             border-color: var(--primary-teal);
-            box-shadow: 0 0 0 2px rgba(0, 137, 123, 0.1);
+            box-shadow: 0 0 0 2px rgba(0, 137, 123, 0.08);
         }
 
         .eye-icon {
             position: absolute;
-            right: 15px;
-            top: 14px;
+            right: 12px;
+            top: 10px;
             color: var(--primary-teal);
             cursor: pointer;
+            z-index: 2;
         }
 
-        /* Footer Links */
+        .eye-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Footer links */
         .flex-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
-            font-size: 14px;
+            margin-bottom: 15px;
+            font-size: 12px;
         }
 
         .checkbox-group {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             color: var(--text-muted);
         }
 
@@ -168,19 +192,19 @@
             background-color: var(--primary-teal);
             color: white;
             width: 100%;
-            padding: 14px;
-            border-radius: 8px;
+            padding: 10px;
+            border-radius: 6px;
             border: none;
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
 
         .switch-form {
-            font-size: 14px;
+            font-size: 12px;
             color: var(--text-muted);
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             text-align: right;
         }
 
@@ -190,24 +214,25 @@
             font-weight: 700;
         }
 
-        /* App Promo Box */
+        /* Compact App Promo Box */
         .app-promo {
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 10px;
             text-align: left;
         }
 
         .app-promo h3 {
-            margin: 0 0 15px 0;
-            font-size: 18px;
-            line-height: 1.4;
+            margin: 0 0 8px 0;
+            font-size: 12px;
+            line-height: 1.3;
             color: var(--text-dark);
+            text-align: center;
         }
 
         .store-btns {
             display: flex;
-            gap: 10px;
+            gap: 6px;
         }
 
         .store-btn {
@@ -215,15 +240,16 @@
             color: white;
             display: flex;
             align-items: center;
-            padding: 8px 12px;
-            border-radius: 6px;
+            justify-content: center;
+            padding: 5px 8px;
+            border-radius: 4px;
             text-decoration: none;
             flex: 1;
         }
 
-        .store-btn img { width: 24px; margin-right: 8px; }
-        .store-text { font-size: 10px; }
-        .store-name { display: block; font-size: 13px; font-weight: 600; }
+        .store-btn img { width: 16px; margin-right: 4px; }
+        .store-text { font-size: 8px; display: block; line-height: 1; }
+        .store-name { display: block; font-size: 10px; font-weight: 600; line-height: 1.1; }
 
         .hidden { display: none; }
     </style>
@@ -231,102 +257,100 @@
 <body>
 
 <div class="container">
-        <img src="Healthcare+.webp" alt="Health Care+ logo" class="logo">
-        <!-- LOGIN FORM -->
+        <a href="Healthcare.html"><img src="Healthcare+.webp" alt="Health Care+ logo" class="logo"></a>
+        
         <div id="login-section">
             <h1>Welcome to Health Care+</h1>
             <p class="subtitle">Login to your Health Care+ Account</p>
-        <button class="google-btn">
-            <img src="google.png" class="google-icon" alt="Google">
-            Login with Google Email
-        </button>
+            <button id="login-google-btn" type="button" class="google-btn">
+                <img src="google.png" class="google-icon" alt="Google">
+                Login with Google Email
+            </button>
 
-        <div class="divider">or continue with email</div>
+            <div class="divider">or continue with email</div>
 
-        <form id="login-form">
-            <div class="form-group">
-                <label>Email <span>*</span></label>
-                <input id="login-email" type="email" required>
-            </div>
-
-            <div class="form-group">
-                <label>Password <span>*</span></label>
-                <input id="login-password" type="password" required>
-                <span class="eye-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                </span>
-            </div>
-
-            <div class="flex-row">
-                <div class="checkbox-group">
-                    <input type="checkbox" id="remember">
-                    <label for="remember" style="position:static; padding:0; font-size:14px;">Remember me</label>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>Email <span>*</span></label>
+                    <input id="login-email" type="email" required>
                 </div>
-                <a href="#" class="forgot-pass">Forgot Password?</a>
-            </div>
 
-            <button type="submit" class="btn-submit">Login</button>
-        </form>
-
-        <div class="switch-form">
-            Don't have an account? <a href="#" onclick="toggleForm()">Sign up</a>
-        </div>
-    </div>
-
-    <!-- REGISTRATION FORM (Hidden by default) -->
-    <div id="register-section" class="hidden">
-        <h1>Join Health Care+!</h1>
-        <p class="subtitle">Create your Health Care+ Account</p>
-
-        <button class="google-btn">
-            <img src="google.png" class="google-icon" alt="Google">
-            Sign up with Google Email
-        </button>
-
-        <div class="divider">or register with email</div>
-
-        <form id="register-form">
-            <div class="form-group">
-                <label>Full Name <span>*</span></label>
-                <input id="register-name" type="text" required>
-            </div>
-            <div class="form-group">
-                <label>Email <span>*</span></label>
-                <input id="register-email" type="email" required>
-            </div>
-            <div class="form-group">
-                <label>Password <span>*</span></label>
-                <input id="register-password" type="password" required>
-            </div>
-
-            <button type="submit" class="btn-submit">Create Account</button>
-        </form>
-
-        <div class="switch-form">
-            Already have an account? <a href="#" onclick="toggleForm()">Login</a>
-        </div>
-    </div>
-
-    <!-- App Promo Section -->
-    <div class="app-promo">
-        <h3>Get the Health Care+ Doctor Mobile App for Free!</h3>
-        <div class="store-btns">
-            <a href="#" class="store-btn">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store">
-                <div class="store-content">
-                    <span class="store-text">GET IT ON</span>
-                    <span class="store-name">Google Play</span>
+                <div class="form-group">
+                    <label>Password <span>*</span></label>
+                    <input id="login-password" type="password" required>
+                    <span class="eye-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </span>
                 </div>
-            </a>
-            <a href="#" class="store-btn">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Apple_logo_white.svg" alt="App Store">
-                <div class="store-content">
-                    <span class="store-text">Download on the</span>
-                    <span class="store-name">App Store</span>
+
+                <div class="flex-row">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="remember">
+                        <label for="remember" style="position:static; padding:0; font-size:12px; background:transparent;">Remember me</label>
+                    </div>
+                    <a href="#" id="forgot-pass" class="forgot-pass">Forgot Password?</a>
                 </div>
-            </a>
+
+                <button type="submit" class="btn-submit">Login</button>
+            </form>
+
+            <div class="switch-form">
+                Don't have an account? <a href="#" onclick="toggleForm()">Sign up</a>
+            </div>
         </div>
-    </div>
+
+        <div id="register-section" class="hidden">
+            <h1>Join Health Care+!</h1>
+            <p class="subtitle">Create your Health Care+ Account</p>
+
+            <button id="register-google-btn" type="button" class="google-btn">
+                <img src="google.png" class="google-icon" alt="Google">
+                Sign up with Google Email
+            </button>
+
+            <div class="divider">or register with email</div>
+
+            <form id="register-form">
+                <div class="form-group">
+                    <label>Full Name <span>*</span></label>
+                    <input id="register-name" type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Email <span>*</span></label>
+                    <input id="register-email" type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password <span>*</span></label>
+                    <input id="register-password" type="password" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Create Account</button>
+            </form>
+
+            <div class="switch-form">
+                Already have an account? <a href="#" onclick="toggleForm()">Login</a>
+            </div>
+        </div>
+
+        <div class="app-promo">
+            <h3>Get the Mobile App for Free!</h3>
+            <div class="store-btns">
+                <a href="#" class="store-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store">
+                    <div class="store-content">
+                        <span class="store-text">GET IT ON</span>
+                        <span class="store-name">Google Play</span>
+                    </div>
+                </a>
+                <a href="#" class="store-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Apple_logo_white.svg" alt="App Store">
+                    <div class="store-content">
+                        <span class="store-text">Download on the</span>
+                        <span class="store-name">App Store</span>
+                    </div>
+                </a>
+            </div>
+        </div>
 </div>
 
 <script>
@@ -335,43 +359,147 @@
         document.getElementById('register-section').classList.toggle('hidden');
     }
 
-    document.getElementById('login-form').addEventListener('submit', function(event) {
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function showMessage(message) {
+        alert(message);
+    }
+
+    function handleGoogleLogin() {
+        var googleEmail = prompt('Enter your Google email to sign in:');
+        if (!googleEmail) return;
+        googleEmail = googleEmail.trim();
+        if (!isValidEmail(googleEmail)) {
+            showMessage('Please enter a valid email address.');
+            return;
+        }
+        localStorage.setItem('hcplus-google-email', googleEmail);
+        localStorage.setItem('hcplus-email', googleEmail);
+        localStorage.setItem('hcplus-password', 'google-auth');
+        showMessage('Signed in with Google as ' + googleEmail + '. Redirecting...');
+        window.location.href = 'Healthcare.html';
+    }
+
+    function handleGoogleRegister() {
+        var googleEmail = prompt('Enter your Google email to register:');
+        if (!googleEmail) return;
+        googleEmail = googleEmail.trim();
+        if (!isValidEmail(googleEmail)) {
+            showMessage('Please enter a valid email address.');
+            return;
+        }
+        var fullName = prompt('Enter your full name for the account:');
+        if (!fullName) {
+            showMessage('Registration cancelled.');
+            return;
+        }
+        localStorage.setItem('hcplus-google-email', googleEmail);
+        localStorage.setItem('hcplus-email', googleEmail);
+        localStorage.setItem('hcplus-name', fullName.trim());
+        localStorage.setItem('hcplus-password', 'google-auth');
+        showMessage('Google registration successful! Redirecting to Health Care+.');
+        window.location.href = 'Healthcare.html';
+    }
+
+    function handleForgotPassword(event) {
         event.preventDefault();
-        var email = document.getElementById('login-email').value.trim();
-        var password = document.getElementById('login-password').value.trim();
-
         var storedEmail = localStorage.getItem('hcplus-email');
-        var storedPassword = localStorage.getItem('hcplus-password');
-
-        if (!storedEmail || !storedPassword) {
-            alert('No account found. Please register first.');
+        if (!storedEmail) {
+            showMessage('No account found. Please register first.');
             toggleForm();
             return;
         }
-
-        if (email !== storedEmail || password !== storedPassword) {
-            alert('Email or password is incorrect. Please register or try again.');
+        var email = prompt('Enter your registered email for password reset:', storedEmail);
+        if (!email) return;
+        email = email.trim();
+        if (email !== storedEmail) {
+            showMessage('The provided email does not match the registered account.');
             return;
         }
+        var newPassword = prompt('Enter a new password:');
+        if (!newPassword) {
+            showMessage('Password reset cancelled.');
+            return;
+        }
+        localStorage.setItem('hcplus-password', newPassword);
+        showMessage('Password reset successful. You can now login with your new password.');
+    }
 
-        alert('Login successful!');
-        // Add redirect or actual login logic here if needed.
-    });
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById('login-password');
+        var eyeIcon = document.querySelector('.eye-icon');
+        var visible = passwordInput.type === 'text';
+        passwordInput.type = visible ? 'password' : 'text';
+        eyeIcon.innerHTML = visible ?
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>' :
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.05 10.05 0 0 1 12 20c-7 0-11-8-11-8 1.26-2.41 3.01-4.34 5.16-5.64"></path><path d="M1 1l22 22"></path><path d="M9.88 9.88a3 3 0 0 0 4.24 4.24"></path></svg>';
+    }
 
-    document.getElementById('register-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        var name = document.getElementById('register-name').value.trim();
-        var email = document.getElementById('register-email').value.trim();
-        var password = document.getElementById('register-password').value.trim();
+    document.addEventListener('DOMContentLoaded', function() {
+        var loginForm = document.getElementById('login-form');
+        var registerForm = document.getElementById('register-form');
+        var loginGoogleBtn = document.getElementById('login-google-btn');
+        var registerGoogleBtn = document.getElementById('register-google-btn');
+        var forgotPassLink = document.getElementById('forgot-pass');
+        var eyeIcon = document.querySelector('.eye-icon');
 
-        localStorage.setItem('hcplus-name', name);
-        localStorage.setItem('hcplus-email', email);
-        localStorage.setItem('hcplus-password', password);
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                var email = document.getElementById('login-email').value.trim();
+                var password = document.getElementById('login-password').value.trim();
+                var storedEmail = localStorage.getItem('hcplus-email');
+                var storedPassword = localStorage.getItem('hcplus-password');
 
-        alert('Registration successful! Please login to continue.');
-        toggleForm();
+                if (!storedEmail || !storedPassword) {
+                    showMessage('No account found. Please register first.');
+                    toggleForm();
+                    return;
+                }
+                if (email !== storedEmail) {
+                    showMessage('Email is not registered. Please sign up first.');
+                    return;
+                }
+                if (storedPassword === 'google-auth') {
+                    showMessage('Logged in with Google account successfully!');
+                    window.location.href = 'Healthcare.html';
+                    return;
+                }
+                if (password !== storedPassword) {
+                    showMessage('Email or password is incorrect. Please try again.');
+                    return;
+                }
+                showMessage('Login successful!');
+                window.location.href = 'Healthcare.html';
+            });
+        }
+
+        if (registerForm) {
+            registerForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                var name = document.getElementById('register-name').value.trim();
+                var email = document.getElementById('register-email').value.trim();
+                var password = document.getElementById('register-password').value.trim();
+
+                if (!isValidEmail(email)) {
+                    showMessage('Please enter a valid email address.');
+                    return;
+                }
+                localStorage.setItem('hcplus-name', name);
+                localStorage.setItem('hcplus-email', email);
+                localStorage.setItem('hcplus-password', password);
+                showMessage('Registration successful! Please login to continue.');
+                toggleForm();
+            });
+        }
+
+        if (loginGoogleBtn) loginGoogleBtn.addEventListener('click', handleGoogleLogin);
+        if (registerGoogleBtn) registerGoogleBtn.addEventListener('click', handleGoogleRegister);
+        if (forgotPassLink) forgotPassLink.addEventListener('click', handleForgotPassword);
+        if (eyeIcon) eyeIcon.addEventListener('click', togglePasswordVisibility);
     });
 </script>
-
 </body>
 </html>
