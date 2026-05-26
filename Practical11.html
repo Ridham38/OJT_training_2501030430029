@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zebra Stripe Table</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        table{
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        td,th{
+            border:1px solid black;
+            padding:10px;
+        }
+
+        tr:nth-child(even){
+            background-color:#f2f2f2;
+        }
+
+        tr:nth-child(odd){
+            background-color:#ffffff;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+
+    <tr>
+        <td>1</td>
+        <td>Rahul</td>
+    </tr>
+
+    <tr>
+        <td>2</td>
+        <td>Amit</td>
+    </tr>
+
+    <tr>
+        <td>3</td>
+        <td>Neha</td>
+    </tr>
+</table>
+
+</body>
+</html>
