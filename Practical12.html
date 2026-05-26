@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Move Div</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        #box1,#box2{
+            width:250px;
+            height:150px;
+            border:2px solid black;
+            margin:20px;
+            padding:10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box1">
+    <h3>Box 1</h3>
+</div>
+
+<div id="box2">
+    <h3>Box 2</h3>
+    <p id="content">Move Me</p>
+</div>
+
+<button id="moveBtn">Move Element</button>
+
+<script>
+$(document).ready(function(){
+
+    $("#moveBtn").click(function(){
+
+        $("#content").appendTo("#box1");
+
+    });
+
+});
+</script>
+
+</body>
+</html>
