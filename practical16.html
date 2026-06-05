@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Loop & setTimeout Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e9ecef;
+            border-left: 5px solid #007BFF;
+            font-family: monospace;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>JavaScript Event Loop Demonstration</h2>
+    <p>Click the button below to trigger synchronous code, an API fetch, and a 2-second <code>setTimeout</code>.</p>
+    <button id="runBtn">Run Code Execution</button>
+    
+    <h3>Screen Output:</h3>
+    <div id="logBox" class="output">Click the button to see execution order...</div>
+</div>
+
+<script>
+    const runBtn = document.getElementById('runBtn');
+    const logBox = document.getElementById('logBox');
+
+    function logToScreen(text) {
+        logBox.innerHTML += `<br>${text}`;
+        console.log(text);
+    }
+
+    runBtn.addEventListener('click', () => {
+        logBox.innerHTML = "<strong>Execution Started:</strong>";
+
+        // 1. Synchronous Code (Executes immediately on the Call Stack)
+        logToScreen("1. Synchronous: script start");
+
+        // 2. Asynchronous setTimeout (Sent to Web APIs, moves to Macrotask/Timer Queue)
+        setTimeout(() => {
+            logToScreen("Timeout callback (Executed after 2000ms)");
+        }, 2000);
+
+        // 3. Asynchronous Fetch API (Sent to Web APIs, moves to Microtask Queue)
+        fetch('/api/data')
+            .then(response => response.json())
+            .then(data => {
+                logToScreen(`Fetch Promise resolved: ${data.message}`);
+            });
+
+        // 4. Synchronous Code (Executes immediately, blocking the loop until finished)
+        logToScreen("2. Synchronous: script end");
+    });
+</script>
+
+</body>
+</html>
